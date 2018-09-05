@@ -33,16 +33,20 @@ var lengthOfLongestSubstring_1 = function(s) {
 
 //解法2
 var lengthOfLongestSubstring_2 = function(s) {
-  if (typeof s === 'string') {
-    let max = 0;
-    
-    const letters = new Set(s);
-
-    return max;
-  } else {
-    return;
+  if (s.length < 1) {
+    return 0;
   }
+  let i = 0;
+  let j = 1;
+  let longest = 1;
+  while (j < s.length) {
+    if (s.slice(i, j).indexOf(s.charAt(j)) > -1) {
+      i += s.slice(i, j).indexOf(s.charAt(j)) + 1;
+    } else {
+      longest = Math.max(j - i + 1, longest);
+    }
+    j++;
+  }
+  return longest;
 };
-
-console.log(lengthOfLongestSubstring_2([]));
 
